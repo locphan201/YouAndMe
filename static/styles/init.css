@@ -1,0 +1,119 @@
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+header {
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+    text-align: center;
+    top: 0;
+    z-index: 10;
+}
+
+header span {
+    width: 15%;
+    text-decoration: none;
+    text-align: center;
+}
+
+header h3 {
+    width: 70%;
+    text-align: left;
+}
+
+.content {
+    position: fixed;
+    top: 10vh;
+    height: 90%;
+    width: 100%;
+    background-color: var(--content-background-color);
+    text-align: center;
+    overflow-y: auto;
+}
+
+.menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 10vh;
+    width: 45%;
+    background-color: var(--menu-background-color);
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    z-index: 10;
+    color: var(--menu-text-color);
+}
+
+.show {
+    display: flex;
+}
+
+.menu span {
+    width: 25%;
+    text-decoration: none;
+    padding: 15px;
+    text-align: center;
+}
+
+.menu div:hover {
+    background-color: var(--menu-hover-color);
+}
+
+.tab {
+    display: none;
+    width: 100%;
+}
+
+#home {
+    display: block;
+}
+
+.menu .tab-item {
+    display: flex;
+    align-items: center;
+    font-size: var(--tab-item-font-size);
+}
+
+.menu .tab-item span {
+    width: 15%;
+}
+
+.menu .tab-item h3 {
+    width: 85%;
+}
+
+.tab h3 {
+    color: #333;
+    margin: 5px;
+}
+
+p {
+    margin: 0;
+}
+
+#add-icon {
+    display: none;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.hidden {
+    display: none;
+}

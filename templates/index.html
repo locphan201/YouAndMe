@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/init.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/gallery.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>My Website</title>
+</head>
+<body>
+
+  <header>
+    <span id="menu-icon" class="material-symbols-outlined">menu</span>
+    <h3>Home</h3>
+    <span id="add-icon" class="material-symbols-outlined">add</span>
+  </header>
+
+  <div class="menu">
+    <div id="home-tab-btn" class="tab-item">
+      <span class="material-symbols-outlined">home</span>
+      <h3>Home</h3>
+    </div>
+
+    <div id="events-tab-btn" class="tab-item">
+      <span class="material-symbols-outlined">event_upcoming</span>
+      <h3>Events</h3>
+    </div>
+
+    <div id="wishlist-tab-btn" class="tab-item">
+      <span class="material-symbols-outlined">favorite</span>
+      <h3>Wishlist</h3>
+    </div>
+
+    <div id="memories-tab-btn" class="tab-item">
+      <span class="material-symbols-outlined">history</span>
+      <h3>Memories</h3>
+    </div>
+
+    <div id="gallery-tab-btn" class="tab-item">
+      <span class="material-symbols-outlined">gallery_thumbnail</span>
+      <h3>Gallery</h3>
+    </div>
+
+    
+  </div>
+
+  <div class="content">
+    <div id="home" class="tab"></div>
+    <div id="event" class="tab"></div>
+
+    <div id="favorite" class="tab">
+      <div class="wishlist-section">
+        <h2>Foods</h2>
+        <ul id="food-wishlist" class="wishlist"></ul>
+      </div>
+
+      <div class="wishlist-section">
+        <h2>Destinations</h2>
+        <ul id="destination-wishlist" class="wishlist"></ul>
+      </div>
+
+      <div class="wishlist-section">
+        <h2>Activities</h2>
+        <ul id="activity-wishlist" class="wishlist"></ul>
+      </div>
+    </div>
+
+    <div id="history" class="tab"></div>
+    <div id="gallery" class="tab"></div>
+  </div>
+
+  <form id="eventForm">
+    <label for="date">Location:</label><br>
+    <input type="text" id="place" name="place" required placeholder="Location"><br>
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="date" required><br>    
+
+    <div>
+      <button class="cancel-btn" type="button" onclick="closeEventForm()">Cancel</button>
+      <button class="accept-btn" type="button" onclick="addEvent()">Create</button>
+      <button class="delete-btn" type="button" onclick="deleteEvent()">Delete</button>
+    </div>
+  </form>
+
+  <form id="galleryUploadForm">
+    <input type="file" id="imageInput" accept="image/*" multiple />
+    <div id="selected-img-list"></div>
+  
+    <div class="btn-div">
+      <button class="cancel-btn" type="button" onclick="closeGalleryForm()">Cancel</button>
+      <button type="button" onclick="compressAndUpload()">Upload</button>
+    </div>
+  </form>
+
+  <form id="imageDisplay">
+    <img id="selected-img" src="">
+
+    <div class="btn-div">
+      <button class="cancel-btn" type="button" onclick="closeImageDisplay()">Cancel</button>
+      <button class="delete-btn" type="button" onclick="deleteImage()">Delete</button>
+    </div>
+  </form>
+  
+
+  <div id="overlay" class="hidden"></div>
+
+  <script src="{{ url_for('static', filename='scripts/init.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/gallery.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/home.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/events.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/wishlist.js') }}"></script>
+
+  <script>
+    loadHomePage();
+    loadWishlist();
+    loadEvents();
+    loadImages();
+  </script>
+</body>
+</html>
