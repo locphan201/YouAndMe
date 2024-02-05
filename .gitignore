@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# .vscode
+.vscode/
+
+# IDE specific files
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.pyc
+*.pyo
+*.pro.user
