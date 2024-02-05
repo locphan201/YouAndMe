@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/theme.css') }}">  
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}"> 
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/utils.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/add.css') }}">
+  <title>Add | YouAndMe</title>
+</head>
+<body>
+  <div class="container">
+    <div id="header">
+      <h2 id="title"></h2>
+    </div>
+    <div id="content">
+      <div class="btn-grid">
+        <button id="event-btn" onclick="tabBtnClicked('event')" class="form-btn selected">Events</button>
+        <button id="wishlist-btn" onclick="tabBtnClicked('wishlist')" class="form-btn">Wishlist</button>
+      </div>
+
+      <form id="event-form">
+        <label for="event-title">Title</label>
+        <input type="text" name="event-title" id="event-title" required><br>
+        <label for="event-date">Date</label>
+        <input type="date" name="event-date" id="event-date" required><br>
+        <button type="submit" onclick="submitEventForm()">Create New Event</button>
+      </form>
+
+      <form id="wishlist-form" style="display: none;">
+        <label for="wishlist-title">Title</label>
+        <input type="text" name="wishlist-title" id="wishlist-title" required><br>
+        <label for="wishlist-type">Type</label>
+        <select name="wishlist-type" id="wishlist-type" required>
+          <option value="food">Food</option>
+          <option value="place">Place</option>
+          <option value="activity">Activity</option>
+        </select><br>
+        <button type="submit" onclick="submitWishListForm()">Create New Wishlist</button>
+      </form>
+    </div>
+    <div id="navBar"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/add.js') }}"></script>
+</body>
+</html>

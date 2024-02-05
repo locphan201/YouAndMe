@@ -1,91 +1,75 @@
-var events = [
-    {
-        date: "01/01/2023",
-        place: "Place 1" 
-    },
-    {
-        date: "02/02/2023",
-        place: "Place 2" 
-    },
-    {
-        date: "10/10/2024",
-        place: "Place 3" 
-    }
-];
+const contentElement = document.getElementById("content");
+const popUp = document.getElementById("pop-up");
+const eventForm = document.getElementById("event-form");
+const eventFormTitle = document.getElementById("event-title");
+const eventFormDate = document.getElementById("event-date");
+const deleteBtn = document.getElementById("delete-btn");
 
-function compareEvents(a, b) {
-    const dateComparison = new Date(b.date) - new Date(a.date);
-
-    if (dateComparison === 0) {
-        return new Date(b.time) - new Date(a.time);
-    }
-
-    return dateComparison;
+const months = {
+    "01": "Jan", "02": "Feb", "03": "Mar", "04":"Apr",
+    "05": "May", "06": "Jun", "07": "Jul", "08":"Aug",
+    "09": "Sep", "10": "Oct", "11": "Nov", "12":"Dec",
 }
 
 function loadEvents() {
-    var currentDate = new Date();
+    fetch("./api/events/")
+        .then(response => response.json())
+        .then(data => {
+            const sortedEvents = Object.entries(data.events)
+                .sort(([, a], [, b]) => new Date(a.date) - new Date(b.date))
+                .map(([key, value]) => ({ id: key, ...value }));
+            
+            sortedEvents.forEach(item => {
+                const eventElement = document.createElement("div");
+                eventElement.className = "event-item";
+                const eventTitle = document.createElement("h3");
+                eventTitle.className = "event-title";
+                eventTitle.textContent = item.title;
+                const eventDate = document.createElement("p");
+                eventDate.className = "event-date";
+                let date = item.date.split("-").reverse();
+                date[1] = months[date[1]];
+                eventDate.textContent = date.join(" ");
 
-    historyTab.innerHTML = "";
-    eventTab.innerHTML = "";
+                eventElement.appendChild(eventTitle);
+                eventElement.appendChild(eventDate);
 
-    events.sort(compareEvents);
-    events.forEach(eventInfo => {
-        var eventDate = new Date(eventInfo.date);
-        var dayOfWeek = getDayOfWeek(eventDate.getDay());
+                eventElement.addEventListener("click", () => {
+                    popUp.style.display = "block";
+                    deleteBtn.setAttribute("onclick", `deleteEventForm("${item.id}")`);
+                    eventFormTitle.value = item.title;
+                    eventFormDate.value = item.date;
+                });
 
-        const content = document.createElement("div");
-        content.className = "event-item";
-        const eventDateElement = document.createElement("h3");
-        eventDateElement.textContent = `${dayOfWeek}, ${eventInfo.date}`;
-        const eventLocationElement = document.createElement("p");
-        eventLocationElement.textContent = `${eventInfo.place}`;
-
-        content.appendChild(eventDateElement);
-        content.appendChild(eventLocationElement);
-
-        content.addEventListener("click", () => {
-            openEventForm("delete");
-            document.getElementById('place').value = eventInfo.place;
-            var rawDate = eventInfo.date;
-            var dateParts = rawDate.split("/");
-            var formattedDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
-            document.getElementById('date').value = formattedDate;
+                contentElement.appendChild(eventElement);
+            });
+            
         })
+        .catch(error => error)
+}
 
-        if (eventDate < currentDate) {
-            historyTab.append(content);
-        } else {
-            eventTab.append(content);
+function cancelEventForm() {
+    event.preventDefault();
+    popUp.style.display = "none";
+}
+
+function deleteEventForm(eventID) {
+    event.preventDefault();
+
+    fetch(`./api/events/${eventID}`, { method: "DELETE" })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to delete event!");
         }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.message);
+        window.location.reload();
+    })
+    .catch(error => {
+        alert(error.message);
     });
 }
 
-function addEvent() {
-    var place = document.getElementById('place').value;
-    var rawDate = document.getElementById('date').value;
-    var dateParts = rawDate.split("-");
-    var formattedDate = dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0];
-
-    if (place == "" && rawDate == "") {
-        eventForm.reset();
-        eventForm.style.display = "none";
-        alert("Dữ liệu không hợp lệ!");
-        return;
-    }
-
-    var newEvent = {
-        place: place,
-        date: formattedDate
-    };
-
-    events.push(newEvent);
-    eventForm.reset();
-    eventForm.style.display = "none";
-    loadEvents();
-    hideOverlay();
-}
-
-function deleteEvent() {
-    hideOverlay();
-}
+loadEvents();

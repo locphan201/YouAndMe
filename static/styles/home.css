@@ -1,9 +1,22 @@
-#home-background {
-    position: absolute;
-    top: 10vh;
-    height: 90%;
+#content {
     width: 100%;
-    object-fit: cover;
-    aspect-ratio: 1;
-    z-index: -100;
+    position: flex;
+    text-align: center;
+}
+
+#info {
+    /* position: absolute;
+    right: 0;
+    top: 2.5rem; */
+    /* width: fit-content; */
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    /* background-color: aliceblue; */
+}
+
+#info h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 1.25rem;
 }

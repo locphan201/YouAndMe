@@ -1,14 +1,19 @@
+/*
+    #80BCBD 40
+    #AAD9BB 30
+    #D5F0C1 20
+    #F9F7C9 10
+*/
 :root {
-    --font-family: Arial, sans-serif;
-    
-    --header-background-color: #333;
-    --header-text-color: #fff;
-    
-    --content-background-color: #f0f0f0;
-    
-    --menu-background-color: #333;
-    --menu-text-color: #fff;
-    --menu-hover-color: #555;
-    
-    --tab-item-font-size: smaller;
+    --primary-color: #80BCBD;
+    --secondary-color: #AAD9BB;
+    --accent-color: #D5F0C1;
+    --background-color: #F9F7C9;
+    --text-color: #000000;
+
+    /* navBar */
+    --navBar-background-color: #AAD9BB;
+    --navBar-icon-color: #000000;
+    --navBar-selected-icon-color: white;
+    --navBar-selected-icon-background-color: #FFFFFF;
 }

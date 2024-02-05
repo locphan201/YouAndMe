@@ -1,4 +1,5 @@
-const startDate = new Date("2023-11-28")
+const contentElement = document.getElementById("content");
+const startDate = new Date("2024-01-28")
 
 function getDayOfWeek(dayNumber) {
     var daysOfWeek = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
@@ -14,21 +15,11 @@ function differenceInDays(date1, date2) {
 }
 
 function loadHomePage() {
-    const partnerName = "Partner's Name";
+    document.getElementById("time").textContent = 
+        `${differenceInDays(startDate, new Date())} Days Together`;
 
-    const infoDiv = document.createElement("div");
-    const text1 = document.createElement("h3");
-    const text2 = document.createElement("p");
-
-
-
-    text1.textContent = `${differenceInDays(startDate, new Date())} Days Together`;
-    text2.textContent = `With ${partnerName}`;
-    infoDiv.appendChild(text1);
-    infoDiv.appendChild(text2);
-
-    homeTab.appendChild(infoDiv);
-
-    // const imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Mona_Lisa-restored.jpg/1200px-Mona_Lisa-restored.jpg";
-    // document.getElementById("home-background").src = imageUrl;
+    document.getElementById("names").innerHTML = 
+        `Mắm - Muối`;
 }
+
+loadHomePage();
