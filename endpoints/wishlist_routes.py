@@ -20,7 +20,7 @@ def delete_wishlist_route(wishlist_id):
     except:
         return jsonify({'message': 'Failed to Delete'}), 400
 
-@wishlist_blueprint.route('/', methods=['POST'])
+@wishlist_blueprint.route('/create', methods=['POST'])
 def create_wishlist_route():
     try:
         title = request.json.get('title')

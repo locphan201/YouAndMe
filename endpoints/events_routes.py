@@ -20,7 +20,7 @@ def delete_event_route(event_id):
     except:
         return jsonify({'message': 'Failed to Delete'}), 400
 
-@events_blueprint.route('/', methods=['POST'])
+@events_blueprint.route('/create', methods=['POST'])
 def create_event_route():
     try:
         title = request.json.get('title')

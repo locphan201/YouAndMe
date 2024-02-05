@@ -30,7 +30,7 @@ function submitEventForm() {
         "date": date
     };
 
-    fetch("./api/events", {
+    fetch("./api/events/create", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -63,7 +63,7 @@ function submitWishListForm() {
         "type": wishlistType
     };
 
-    fetch("./api/wishlist", {
+    fetch("./api/wishlist/create", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
